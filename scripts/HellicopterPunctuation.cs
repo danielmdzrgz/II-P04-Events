@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HellicopterPunctuation : MonoBehaviour
+{
+    private int playerPunctuation = 0;
+    public Text playerPunctuationText;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerPunctuation = 0;
+        updatePunctuationText();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.tag == "sphere_group_1") 
+        {
+            playerPunctuation += 5;
+            Destroy(other.gameObject);
+            updatePunctuationText();
+        }
+        else
+        {
+            playerPunctuation += 10;
+            Destroy(other.gameObject);
+            updatePunctuationText();
+        }
+    }
+
+    void updatePunctuationText()
+    {
+        playerPunctuationText.text = "Player punctuation: " + playerPunctuation;
+    }
+}
